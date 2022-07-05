@@ -81,11 +81,21 @@ int Show::executeWithDatabase(QSharedPointer<Database> database, QSharedPointer<
     bool showDefaultAttributes = attributes.isEmpty() && !showTotp;
     if (showDefaultAttributes) {
         attributes = EntryAttributes::DefaultAttributes;
+        attributes.append(EntryAttributes::UuidKey);
+        attributes.append(EntryAttributes::TagsKey);
     }
 
     // Iterate over the attributes and output them line-by-line.
     bool encounteredError = false;
     for (const QString& attributeName : asConst(attributes)) {
+        if (EntryAttributes::TopLevelAttributes.contains(attributeName)) {
+            if (showDefaultAttributes) {
+                out << attributeName << ": ";
+            }
+            out << Utils::getTopLevelField(entry, attributeName) << endl;
+            continue;
+        }
+
         QStringList attrs = Utils::findAttributes(*entry->attributes(), attributeName);
         if (attrs.isEmpty()) {
             encounteredError = true;

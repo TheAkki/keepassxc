@@ -59,7 +59,10 @@ public:
     static const QString PasswordKey;
     static const QString URLKey;
     static const QString NotesKey;
+    static const QString UuidKey;
+    static const QString TagsKey;
     static const QStringList DefaultAttributes;
+    static const QStringList TopLevelAttributes;
     static const QString RememberCmdExecAttr;
     static bool isDefaultAttribute(const QString& key);
 
