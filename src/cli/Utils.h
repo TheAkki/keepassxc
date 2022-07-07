@@ -34,6 +34,10 @@ namespace Utils
     extern QTextStream STDIN;
     extern QTextStream DEVNULL;
 
+    static const QString UuidFieldName = "Uuid";
+    static const QString TagsFieldName = "Tags";
+    static const QStringList EntryFieldNames(QStringList() << UuidFieldName << TagsFieldName);
+
     void setDefaultTextStreams();
 
     void setStdinEcho(bool enable);

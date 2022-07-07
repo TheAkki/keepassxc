@@ -371,10 +371,10 @@ namespace Utils
 
     QString getTopLevelField(const Entry* entry, const QString& fieldName)
     {
-        if (fieldName == EntryAttributes::UuidKey) {
+        if (fieldName == UuidFieldName) {
             return entry->uuid().toString();
         }
-        if (fieldName == EntryAttributes::TagsKey) {
+        if (fieldName == TagsFieldName) {
             return entry->tags();
         }
         return QString("");
