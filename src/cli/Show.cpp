@@ -81,8 +81,9 @@ int Show::executeWithDatabase(QSharedPointer<Database> database, QSharedPointer<
     bool showDefaultAttributes = attributes.isEmpty() && !showTotp;
     if (showDefaultAttributes) {
         attributes = EntryAttributes::DefaultAttributes;
-        attributes.append(Utils::UuidFieldName);
-        attributes.append(Utils::TagsFieldName);
+        for (QString fieldName: Utils::EntryFieldNames) {
+            attributes.append(fieldName);
+        }
     }
 
     // Iterate over the attributes and output them line-by-line.
